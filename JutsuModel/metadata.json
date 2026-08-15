@@ -1,0 +1,18 @@
+{
+    "tfjsVersion": "1.7.4",
+    "tmVersion": "2.4.14",
+    "packageVersion": "0.8.4-alpha2",
+    "packageName": "@teachablemachine/image",
+    "timeStamp": "2026-08-15T20:22:07.866Z",
+    "userMetadata": {},
+    "modelName": "tm-my-image-model",
+    "labels": [
+        "Cobra",
+        "Bode",
+        "Macaco",
+        "Javali",
+        "Cavalo",
+        "Tigre"
+    ],
+    "imageSize": 224
+}
