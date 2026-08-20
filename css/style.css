@@ -66,11 +66,18 @@ video#webcam {
     width: 600px
 }
 
-p#selo {
+.container-selo {
     position: absolute;
-    bottom: 60px;
+    display: flex;
+    bottom: 100px;
 
-    font-size: xx-large;
-    font-weight: 600;
-    color: #fffffa
+    width: 200px;
+    height: 100px;
+
+    text-align: center;
+    flex-direction: column;
+
+    background-color: #1c1313;
+    color: #ffff;
+    font-size: 2rem
 }
