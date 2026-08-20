@@ -16,12 +16,19 @@
 
     <div class="jutsu-container">
         <video id="webcam" autoplay playsinline></video>
+        <p id="selo">...</p>
     </div>
 
     <div class="bottom"></div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
     <script>
+
         const video = document.getElementById("webcam");
+        const resultado = document.getElementById("selo");
+
+        let modelo;
 
         async function iniciarCamera() {
             const stream = await navigator.mediaDevices.getUserMedia({
@@ -31,7 +38,49 @@
             video.srcObject = stream;
         }
 
-        iniciarCamera();
+        async function carregarModelo() {
+            const URL = "./JutsuModel/";
+
+            modelo = await tmImage.load(
+                URL + "model.json",
+                URL + "metadata.json"
+            );
+        }
+
+        async function prever() {
+            const predictions = await modelo.predict(video);
+
+            let melhorClasse = "";
+            let maiorProbabilidade = 0;
+
+            for (const pred of predictions) {
+                if (pred.probability > maiorProbabilidade) {
+                    maiorProbabilidade = pred.probability;
+                    melhorClasse = pred.className;
+                }
+            }
+
+            const selos = {
+                Cobra: "Cobra",
+                Bode: "Bode",
+                Macaco: "Macaco",
+                Javali: "Javali",
+                Cavalo: "Cavalo",
+                Tigre: "Tigre"
+            };
+
+            resultado.textContent = selos[melhorClasse];
+
+            requestAnimationFrame(prever);
+        }
+
+        async function iniciar() {
+            await iniciarCamera();
+            await carregarModelo();
+            await prever();
+        }
+
+        iniciar();
     </script>
 </body>
 
