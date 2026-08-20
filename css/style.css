@@ -9,6 +9,8 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+
+    font-family: sans-serif;
 }
 
 
@@ -60,5 +62,15 @@ h1 {
 }
 
 video#webcam {
-    border: 3px solid #000
+    border: 3px solid #000;
+    width: 600px
+}
+
+p#selo {
+    position: absolute;
+    bottom: 60px;
+
+    font-size: xx-large;
+    font-weight: 600;
+    color: #fffffa
 }
